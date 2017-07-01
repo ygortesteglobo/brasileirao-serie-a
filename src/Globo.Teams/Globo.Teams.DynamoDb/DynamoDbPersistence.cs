@@ -11,39 +11,44 @@
 
 	public class DynamoDbPersistence : ITeamPersistence
 	{
-		private static string tableName = "globo_teams";
 		private AmazonDynamoDBClient client;
 		public DynamoDbPersistence()
 		{
 			AmazonDynamoDBConfig clientConfig = new AmazonDynamoDBConfig();
 			clientConfig.RegionEndpoint = RegionEndpoint.USEast1;
-			AmazonDynamoDBClient client = new AmazonDynamoDBClient(clientConfig);
+			client = new AmazonDynamoDBClient(clientConfig);
 		}
 
-		public Task DeleteAsync(string id, CancellationToken cancellationToken)
+		public async Task DeleteAsync(string id, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			cancellationToken.ThrowIfCancellationRequested();
+
+			DeleteItemRequest deleteItem = DynamoDbParser.GetDeleteItemRequest(id);
+			await client.DeleteItemAsync(deleteItem, cancellationToken);
 		}
 
-		public Task<List<Team>> GetAllAsync(CancellationToken cancellationToken)
+		public async Task<List<Team>> GetAllAsync(CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			cancellationToken.ThrowIfCancellationRequested();
+
+			ScanRequest scanRequest = DynamoDbParser.GetScanRequest();
+			ScanResponse scanResponse = await client.ScanAsync(scanRequest, cancellationToken);
+			return DynamoDbParser.GetListTeam(scanResponse);
 		}
 
-		public Task<Team> GetAsync(string id, CancellationToken cancellationToken)
+		public async Task<Team> GetAsync(string id, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			cancellationToken.ThrowIfCancellationRequested();
+
+			GetItemRequest getItem = DynamoDbParser.GetGetItemRequest(id);
+			GetItemResponse responseItem = await client.GetItemAsync(getItem, cancellationToken);
+			return DynamoDbParser.GetTeam(responseItem);
 		}
 
 		public async Task SaveAsync(Team team, CancellationToken cancellationToken)
 		{
-			PutItemRequest putItem = new PutItemRequest(tableName, new Dictionary<string, AttributeValue>()
-			{
-				{ "id", new AttributeValue(){ S = team.Id } },
-				{ "name", new AttributeValue(){ S = team.Name } },
-				{ "shortName", new AttributeValue(){ S = team.ShortName } },
-				{ "image", new AttributeValue(){ S = team.Image } }
-			});
+			cancellationToken.ThrowIfCancellationRequested();
+			PutItemRequest putItem = DynamoDbParser.GetPutItemRequest(team);
 			await client.PutItemAsync(putItem, cancellationToken);
 		}
 	}
