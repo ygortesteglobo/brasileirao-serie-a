@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globo.Teams", "Globo.Teams\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globo.Teams.UnitTest", "Globo.Teams.UnitTest\Globo.Teams.UnitTest.csproj", "{4958977D-1AB0-476E-BF67-0C21B3C766FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Globo.Teams.DynamoDb", "Globo.Teams.DynamoDb\Globo.Teams.DynamoDb.csproj", "{5B5E2DCA-1B01-4354-BEB1-5A978A212DEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globo.Teams.DynamoDb", "Globo.Teams.DynamoDb\Globo.Teams.DynamoDb.csproj", "{5B5E2DCA-1B01-4354-BEB1-5A978A212DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Globo.Teams.IntegratedTest", "Globo.Teams.IntegratedTest\Globo.Teams.IntegratedTest.csproj", "{06A3783B-590C-45B9-852E-0DC170AE92CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globo.Teams.IntegratedTest", "Globo.Teams.IntegratedTest\Globo.Teams.IntegratedTest.csproj", "{06A3783B-590C-45B9-852E-0DC170AE92CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6243998E-750A-4272-A63C-72194A91D3D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4958977D-1AB0-476E-BF67-0C21B3C766FF} = {6243998E-750A-4272-A63C-72194A91D3D9}
+		{06A3783B-590C-45B9-852E-0DC170AE92CE} = {6243998E-750A-4272-A63C-72194A91D3D9}
 	EndGlobalSection
 EndGlobal
