@@ -67,3 +67,19 @@ Status Code:
 - 200: Retornar o registro ou um objeto nulo
 - 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
 - 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
+
+## Removendo um clube
+url: 
+```
+DELETE http://{{host}}/api/teams/{id}
+```
+headers:
+```
+  content-type: application/json
+  authorization: bearer {{authenticated-token}}
+```
+#### Response
+Status Code:
+- 200: Remove o registro com sucesso
+- 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
+- 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
