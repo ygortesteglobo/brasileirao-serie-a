@@ -68,6 +68,37 @@ Status Code:
 - 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
 - 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
 
+## Consultando a listagem de clubes
+url: 
+```
+GET http://{{host}}/api/teams
+```
+headers:
+```
+  content-type: application/json
+  authorization: bearer {{authenticated-token}}
+```
+#### Response
+body:
+```
+[
+  {
+    "id": "12345",
+    "name": "Clube de Regatas Flamengo",
+    "shortName": "Flamengo",
+    "image": "http://flamengo.com.br/image.jpg"
+  },
+  {
+    ...
+  }
+]
+```
+
+Status Code:
+- 200: Retornar os registros cadastrados
+- 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
+- 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
+
 ## Removendo um clube
 url: 
 ```
