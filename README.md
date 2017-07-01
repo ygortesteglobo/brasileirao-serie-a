@@ -1,2 +1,42 @@
-# brasileirao-serie-a
-Sistema que controla o cadastro de clubes da Série A do Brasileirão
+O Serviço Brasileirão Série A permite o cadastro de clubes da Série A do Campeonato Brasileiro através de uma API REST.
+
+Utilizamos para esse serviço as seguintes tecnologias cloud da AWS (Amazon Web Services):
+
+1. Dynamo DB;
+2. Beanstalk;
+3. EC2;
+
+## Cadastro de um clube
+
+#### Request
+url: 
+```
+http://{{host}}/api/teams
+```
+headers:
+```
+  content-type: application/json
+  authorization: bearer {{authenticated-token}}
+```
+body:
+```
+{
+  "name": "Clube de Regatas Flamengo",
+  "shortName": "Flamengo",
+  "image": "http://flamengo.com.br/image.jpg"
+}
+```
+#### Response
+body:
+```
+{
+  "id": "12345",
+}
+```
+
+Status Code:
+- 200: Registro atualizado com sucesso
+- 201: Registro criado com sucesso
+- 400: Erro no JSON enviado
+- 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
+- 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
