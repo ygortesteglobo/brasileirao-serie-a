@@ -11,7 +11,7 @@ Utilizamos para esse serviço as seguintes tecnologias cloud da AWS (Amazon Web 
 #### Request
 url: 
 ```
-http://{{host}}/api/teams
+PUT http://{{host}}/api/teams
 ```
 headers:
 ```
@@ -38,5 +38,32 @@ Status Code:
 - 200: Registro atualizado com sucesso
 - 201: Registro criado com sucesso
 - 400: Erro no JSON enviado
+- 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
+- 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
+
+
+## Consultando um clube
+url: 
+```
+GET http://{{host}}/api/teams/{id}
+```
+headers:
+```
+  content-type: application/json
+  authorization: bearer {{authenticated-token}}
+```
+#### Response
+body:
+```
+{
+  "id": "12345",
+  "name": "Clube de Regatas Flamengo",
+  "shortName": "Flamengo",
+  "image": "http://flamengo.com.br/image.jpg"
+}
+```
+
+Status Code:
+- 200: Retornar o registro ou um objeto nulo
 - 401: Usuário não autenticado (adicionar o header authorization para resolver este caso)
 - 403: Acesso negado (usuário autenticado não possui acesso para cadastrar um clube
