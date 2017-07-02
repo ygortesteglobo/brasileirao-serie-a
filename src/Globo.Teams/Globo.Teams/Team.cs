@@ -31,7 +31,6 @@
 				errors.Add(new ArgumentNullException("name"));
 			if (string.IsNullOrWhiteSpace(ShortName))
 				errors.Add(new ArgumentNullException("shortName"));
-
 		}
 
 		internal void CreateNewId()

@@ -5,7 +5,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 
-	internal class TeamPersistenceMock : ITeamPersistence
+	internal class TeamPersistenceMock : ITeamRepository
 	{
 		private List<Team> teams = new List<Team>();
 

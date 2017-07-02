@@ -8,7 +8,7 @@
 
 	public class TeamManager
     {
-		private ITeamPersistence persistence = null;
+		private ITeamRepository repository = null;
 
 		private static TeamManager instance = null;
 		public static TeamManager Instance
@@ -16,7 +16,7 @@
 			get
 			{
 				if (instance == null)
-					throw new Exception("You must inject the persistance dependency");
+					throw new Exception("You must inject the storage dependency");
 
 				return instance;
 			}
@@ -26,9 +26,9 @@
 			}
 		}
 
-		public TeamManager(ITeamPersistence persistence)
+		public TeamManager(ITeamRepository repository)
 		{
-			this.persistence = persistence ?? throw new ArgumentException("TeamPersistence cannot be null.", "persistence");
+			this.repository = repository ?? throw new ArgumentException("Cannot init TeamManager with null repository.", "repository");
 		}
 
 		public async Task<Team> SaveAsync(Team team, CancellationToken cancellationToken)
@@ -38,7 +38,7 @@
 			team.CreateNewId();
 			team.Validate();
 
-			await persistence.SaveAsync(team, cancellationToken);
+			await repository.SaveAsync(team, cancellationToken);
 			return team;
 		}
 
@@ -48,7 +48,7 @@
 
 			ValidateId(id);
 
-			Team team = await persistence.GetAsync(id, cancellationToken);
+			Team team = await repository.GetAsync(id, cancellationToken);
 			if (team != null) team.IsPersisted = true;
 			return team;
 		}
@@ -59,14 +59,14 @@
 
 			ValidateId(id);
 
-			await persistence.DeleteAsync(id, cancellationToken);
+			await repository.DeleteAsync(id, cancellationToken);
 		}
 
 		public async Task<List<Team>> GetAllAsync(CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			List<Team> teams = await persistence.GetAllAsync(cancellationToken);
+			List<Team> teams = await repository.GetAllAsync(cancellationToken);
 			Parallel.ForEach(teams, item => item.IsPersisted = true);
 			return teams;
 		}

@@ -9,7 +9,7 @@
 	using Amazon;
 	using Amazon.DynamoDBv2.Model;
 
-	public class DynamoDbPersistence : ITeamPersistence
+	public class DynamoDbPersistence : ITeamRepository
 	{
 		private AmazonDynamoDBClient client;
 		public DynamoDbPersistence()
