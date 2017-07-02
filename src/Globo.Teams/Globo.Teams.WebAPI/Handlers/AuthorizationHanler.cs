@@ -46,7 +46,8 @@
 						await context.Response.WriteAsync("Acesso negado");
 					}
 				}
-			}
+			}else
+				await next.Invoke();
 		}
 	}
 }
