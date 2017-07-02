@@ -48,7 +48,8 @@
 			cancellationToken.ThrowIfCancellationRequested();
 
 			user.Validate();
-			user.Password = Cryptography.GenerateHash(user.Password);
+			if(!user.IsPersisted)
+				user.Password = Cryptography.GenerateHash(user.Password);
 
 			await repository.SaveAsync(user, cancellationToken);
 		}

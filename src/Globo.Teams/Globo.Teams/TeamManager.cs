@@ -67,7 +67,9 @@
 			cancellationToken.ThrowIfCancellationRequested();
 
 			List<Team> teams = await repository.GetAllAsync(cancellationToken);
-			Parallel.ForEach(teams, item => item.IsPersisted = true);
+			Parallel.ForEach(teams, item => {
+				if(item != null) item.IsPersisted = true;
+			});
 			return teams;
 		}
 

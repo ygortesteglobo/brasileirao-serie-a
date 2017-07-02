@@ -13,7 +13,7 @@
 
 	public class AuthorizationHanler
 	{
-		private static Regex bearerRegex = new Regex("^bearer (?<token>[A-Za-z0-9]+)");
+		private static Regex bearerRegex = new Regex("^bearer (?<token>[A-Za-z0-9=]+)");
 		internal async static Task AuthorizationHandlerMethod(HttpContext context, Func<Task> next)
 		{
 			StringValues values;
