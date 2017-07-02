@@ -3,7 +3,7 @@
 	using Newtonsoft.Json;
 	using System;
 
-	internal class TokenData
+	public class TokenData
     {
 		public string Id { get; set; }
 		public string User { get; set; }

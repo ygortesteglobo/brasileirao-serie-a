@@ -14,9 +14,17 @@
 
 		public static TokenData GetByToken(string token)
 		{
-			byte[] bytes = Convert.FromBase64String(token);
-			string json = System.Text.Encoding.UTF8.GetString(bytes);
-			return JsonConvert.DeserializeObject<TokenData>(json);
+			
+			try
+			{
+				byte[] bytes = Convert.FromBase64String(token);
+				string json = System.Text.Encoding.UTF8.GetString(bytes);
+				return JsonConvert.DeserializeObject<TokenData>(json);
+			}
+			catch (Exception)
+			{
+				return null;
+			}
 		}
 	}
 }

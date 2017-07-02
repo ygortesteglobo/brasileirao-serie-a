@@ -33,16 +33,20 @@
 		/// Validate if token is expired or the tokenId is not equal that is persisted by client
 		/// </summary>
 		/// <param name="token"></param>
-		public async Task ThrowIfTokenIsInvalidAsync(string token, CancellationToken cancellationToken)
+		public async Task<TokenData> GetTokenDataAsync(string token, CancellationToken cancellationToken)
 		{
 			TokenData tokenData = TokenHelper.GetByToken(token);
+			if(tokenData == null)
+				throw new TokenInvalidException();
 			if (DateTime.Now > tokenData.Expiration)
 				throw new TokenExpiredException();
 			User user = await UserManager.Instance.GetAsync(tokenData.User, cancellationToken);
-			if(string.IsNullOrWhiteSpace(user.TokenId) || !tokenData.Id.Equals(user.TokenId))
+			if(user == null || string.IsNullOrWhiteSpace(user.TokenId) || !tokenData.Id.Equals(user.TokenId))
 			{
 				throw new TokenInvalidException();
 			}
+
+			return tokenData;
 		}
 	}
 }

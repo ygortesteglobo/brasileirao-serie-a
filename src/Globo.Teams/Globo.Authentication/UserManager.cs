@@ -2,6 +2,7 @@
 {
 	using Globo.Authentication.Storage;
 	using System;
+	using System.Collections.Generic;
 	using System.Threading;
 	using System.Threading.Tasks;
 
@@ -50,6 +51,11 @@
 			user.Password = Cryptography.GenerateHash(user.Password);
 
 			await repository.SaveAsync(user, cancellationToken);
+		}
+
+		public async Task<List<User>> GetAllAsync(CancellationToken cancellationToken)
+		{
+			return await repository.GetAllAsync(cancellationToken);
 		}
 	}
 }
