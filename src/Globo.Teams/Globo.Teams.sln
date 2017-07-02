@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globo.Teams.WebAPI", "Globo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Globo.Authentication", "Globo.Authentication\Globo.Authentication.csproj", "{77192800-F993-4649-B584-07FF9D069C1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Globo.Authorization", "Globo.Authorization\Globo.Authorization.csproj", "{5086DAF6-5CF0-4774-801F-08BD46EA6B58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{77192800-F993-4649-B584-07FF9D069C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77192800-F993-4649-B584-07FF9D069C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77192800-F993-4649-B584-07FF9D069C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5086DAF6-5CF0-4774-801F-08BD46EA6B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5086DAF6-5CF0-4774-801F-08BD46EA6B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5086DAF6-5CF0-4774-801F-08BD46EA6B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5086DAF6-5CF0-4774-801F-08BD46EA6B58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
