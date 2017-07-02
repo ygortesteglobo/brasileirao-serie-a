@@ -12,6 +12,9 @@
 		[JsonProperty("password")]
 		public string Password { get; set; }
 
+		[JsonProperty("tokenId")]
+		public string TokenId { get; set; }
+
 		[JsonIgnore]
 		public bool IsPersisted { get; set; }
 

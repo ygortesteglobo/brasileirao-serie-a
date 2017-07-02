@@ -45,6 +45,10 @@
 		public async Task SaveAsync(User user, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
+
+			user.Validate();
+			user.Password = Cryptography.GenerateHash(user.Password);
+
 			await repository.SaveAsync(user, cancellationToken);
 		}
 	}
