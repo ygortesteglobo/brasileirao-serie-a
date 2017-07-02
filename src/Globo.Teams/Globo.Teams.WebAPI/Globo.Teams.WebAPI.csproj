@@ -17,8 +17,14 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="aws-windows-deployment\aws-windows-deployment-manifest.json" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Globo.Teams.DynamoDb\Globo.Teams.DynamoDb.csproj" />
     <ProjectReference Include="..\Globo.Teams\Globo.Teams.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Include="web.config" CopyToPublishDirectory="Always" />
+	</ItemGroup>
 </Project>
