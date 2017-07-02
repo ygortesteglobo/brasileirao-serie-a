@@ -20,7 +20,7 @@
 			string path = context.Request.Path.Value;
 			if (path.Contains("api/teams"))
 			{
-				using (CancellationTokenSource tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(1)))
+				using (CancellationTokenSource tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(60)))
 				{
 					if (context.Request.Headers.TryGetValue("Authorization", out values))
 					{
@@ -34,6 +34,9 @@
 							{
 								context.Response.StatusCode = 403;
 								await context.Response.WriteAsync("Acesso negado.");
+							}else
+							{
+								await next.Invoke();
 							}
 						}
 					}
@@ -44,8 +47,6 @@
 					}
 				}
 			}
-
-			await next.Invoke();
 		}
 	}
 }
